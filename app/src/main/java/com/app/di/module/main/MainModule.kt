@@ -1,7 +1,7 @@
 package com.app.di.module.main
 
 import com.app.api.GithubApi
-import com.app.repository.MainRepository
+import com.app.repository.ProjectsRepository
 import com.app.ui.main.adapter.MainAdapter
 import dagger.Module
 import dagger.Provides
@@ -26,6 +26,6 @@ class MainModule
         @MainScope
         @Provides
         @JvmStatic
-        fun provideMainRepository(githubApi : GithubApi) = MainRepository(githubApi)
+        fun provideProjectsRepository(githubApi : GithubApi) = ProjectsRepository(githubApi)
     }
 }
