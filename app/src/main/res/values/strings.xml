@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NAndroid</string>
+    <string name="error_message_network">Network error</string>
+</resources>
