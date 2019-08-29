@@ -6,7 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_rootView"
-        tools:context="com.app.ui.main.MainActivity">
+        tools:context="com.app.ui.project.ProjectListActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/project_recylv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="@dimen/dimen_8dp"
+            tools:layout_editor_absoluteY="@dimen/dimen_8dp" />
 
     <ProgressBar
             app:layout_constraintTop_toTopOf="parent"

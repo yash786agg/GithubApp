@@ -1,9 +1,9 @@
-package com.app.ui.main
+package com.app.ui.project
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.app.pagination.datasource.ProjectsDataSourceFactory
-import com.app.repository.ProjectsRepository
+import com.app.pagination.datasource.ProjectDataSourceFactory
+import com.app.repository.ProjectRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -13,16 +13,16 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.app.api.NetworkState
 
-class MainViewModel @Inject constructor(projectsRepository : ProjectsRepository) : ViewModel() {
+class ProjectListViewModel @Inject constructor(projectRepository : ProjectRepository) : ViewModel() {
 
     /**
-     * This is a scope for co-routines launched by [MainViewModel]
+     * This is a scope for co-routines launched by [ProjectListViewModel]
      * that will be dispatched in a Pool of Thread
      */
     private val ioScope = CoroutineScope(Dispatchers.IO)
 
     // FOR DATA ---
-    private val projectsDataSource = ProjectsDataSourceFactory(projectsRepository,ioScope)
+    private val projectsDataSource = ProjectDataSourceFactory(projectRepository,ioScope)
 
     // OBSERVABLES ---
     val projects = LivePagedListBuilder(projectsDataSource, pagedListConfig()).build()
