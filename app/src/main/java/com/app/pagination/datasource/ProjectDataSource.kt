@@ -63,8 +63,6 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Project>) {
 
-        Log.e(TAG, "loadAfter")
-
         networkState.postValue(NetworkState.Loading())
 
         scope.launch {
