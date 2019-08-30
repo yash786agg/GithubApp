@@ -1,4 +1,4 @@
-package com.app.ui.project
+package com.app.ui.project.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -26,7 +26,7 @@ class ProjectListViewModel @Inject constructor(projectRepository : ProjectReposi
 
     // OBSERVABLES ---
     val projects = LivePagedListBuilder(projectsDataSource, pagedListConfig()).build()
-    val networkState: LiveData<NetworkState>? = switchMap(projectsDataSource.dataSource) { it.getNetworkState() }
+    val networkState: LiveData<NetworkState<Int>>? = switchMap(projectsDataSource.dataSource) { it.getNetworkState() }
 
     // UTILS ---
 

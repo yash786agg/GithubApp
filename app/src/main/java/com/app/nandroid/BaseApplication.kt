@@ -2,6 +2,7 @@ package com.app.nandroid
 
 import androidx.databinding.DataBindingUtil
 import com.app.di.component.DaggerAppComponent
+import com.app.di.module.BindingModule
 import com.facebook.drawee.backends.pipeline.Fresco
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
@@ -13,7 +14,7 @@ class BaseApplication : DaggerApplication()
         Fresco.initialize(this)
 
         val bindingComponent = DaggerAppComponent.builder()
-            //.bindingModule(BindingModule)
+            .bindingModule(BindingModule)
             .application(this)
             .fresco(Fresco.newDraweeControllerBuilder())
             .build()

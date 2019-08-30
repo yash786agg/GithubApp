@@ -3,8 +3,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils"/>
+
         <variable
-                name="dataManager"
+                name="project"
                 type="com.app.model.project.Project"/>
     </data>
 
@@ -17,12 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
-                app:cardElevation="@dimen/dimen_8dp">
+                android:layout_margin="@dimen/dimen_10dp"
+                app:cardElevation="@dimen/dimen_8dp"
+                app:cardCornerRadius="@dimen/dimen_8dp">
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/dimen_10dp"
                     android:orientation="vertical">
 
                 <LinearLayout
@@ -33,13 +38,14 @@
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            app:srcCompat="@drawable/repo_vector_icon"/>
+                            android:layout_marginTop="@dimen/dimen_10dp"
+                            app:srcCompat="@drawable/repo_vector_icon"
+                            android:contentDescription="@string/app_name"/>
 
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="17sp"
+                            android:textSize="@dimen/text_size_17sp"
                             android:text="@string/square"
                             android:textColor="@color/colorBlue"
                             android:textStyle="normal"
@@ -48,7 +54,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="17sp"
+                            android:textSize="@dimen/text_size_17sp"
                             android:text="@string/slash"
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
@@ -57,8 +63,9 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="17sp"
-                            android:text="@{dataManager.name}"
+                            android:textSize="@dimen/text_size_17sp"
+                            android:visibility="@{TextUtils.isEmpty(project.name) ? View.GONE : View.VISIBLE}"
+                            android:text="@{project.name}"
                             android:textColor="@color/colorBlue"
                             android:textStyle="bold"
                             android:gravity="center"/>
@@ -68,44 +75,52 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="10dp"
-                        android:textSize="14sp"
-                        android:text="PagingKit provides customizable menu UI. It has more flexible layout and design than the other libraries."
+                        android:layout_marginTop="@dimen/dimen_8dp"
+                        android:layout_marginBottom="@dimen/dimen_10dp"
+                        android:textSize="@dimen/text_size_14sp"
+                        android:visibility="@{TextUtils.isEmpty(project.description) ? View.GONE : View.VISIBLE}"
+                        android:text="@{project.description}"
                         android:textColor="@color/colorGray"/>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
-                        android:layout_width="wrap_content"
+                <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/star_vector_icon"
-                        android:textColor="#24292e"
-                        android:textSize="12sp"
-                        android:text="842"/>
+                        android:weightSum="2"
+                        android:orientation="horizontal">
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/circle_shape"
-                        android:layout_marginStart="@dimen/dimen_20dp"
-                        android:drawablePadding="5dp"
-                        android:textColor="#24292e"
-                        android:textSize="12sp"
-                        android:text="Swift"/>
+                    <TextView
+                            android:layout_width="@dimen/dimen_0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:drawableStart="@drawable/star_vector_icon"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:visibility="@{TextUtils.isEmpty(project.stars) ? View.GONE : View.VISIBLE}"
+                            android:text="@{project.stars}"/>
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_20dp"
-                        android:textColor="@color/colorGray"
-                        android:textSize="12sp"
-                        android:text="Updated 9 hours ago"/>
+                    <TextView
+                            android:layout_width="@dimen/dimen_0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:drawableStart="@drawable/circle_shape"
+                            android:layout_marginStart="@dimen/dimen_20dp"
+                            android:drawablePadding="@dimen/dimen_5dp"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:visibility="@{TextUtils.isEmpty(project.language) ? View.GONE : View.VISIBLE}"
+                            android:text="@{project.language}"/>
 
-            </LinearLayout>
+                    <TextView
+                            android:layout_width="@dimen/dimen_0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/dimen_20dp"
+                            android:textColor="@color/colorGray"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:visibility="@{TextUtils.isEmpty(project.updatedAt) ? View.GONE : View.VISIBLE}"
+                            app:updatedAt="@{project.updatedAt}"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

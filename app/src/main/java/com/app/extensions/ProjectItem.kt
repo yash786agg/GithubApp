@@ -4,5 +4,5 @@ import com.app.model.project.Project
 
 interface ProjectItem {
 
-    fun onProjectItemClickListener(project: Project)
+    fun onProjectItemClickListener(project: Project?)
 }

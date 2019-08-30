@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils"/>
+
+        <variable
+                name="project"
+                type="com.app.model.project.Project"/>
+
+        <variable
+                name="callback"
+                type="com.app.ui.project.details.ProjectDetailsActivity"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_10dp"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_18sp"
+                android:textStyle="bold"
+                android:visibility="@{TextUtils.isEmpty(project.name) ? View.GONE : View.VISIBLE}"
+                android:text="@{project.name}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/avatar"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/dimen_210dp"
+                android:layout_height="@dimen/dimen_140dp"
+                fresco:placeholderImage="@drawable/place_holder"
+                fresco:placeholderImageScaleType="centerCrop"
+                android:layout_gravity="center"
+                app:avatarUrl="@{project.owner.avatar}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"/>
+
+        <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{TextUtils.isEmpty(project.description) ? View.GONE : View.VISIBLE}"
+                android:text="@{project.description}"
+                android:textColor="@color/colorGray"
+                android:textSize="@dimen/text_size_17sp"
+                android:padding="@dimen/dimen_10dp"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/avatar"/>
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:layout_marginEnd="@dimen/dimen_10dp"
+                android:text="@string/visit_repo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> callback.onVisitRepoClick(project.url)}"
+                app:layout_constraintTop_toBottomOf="@+id/description"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

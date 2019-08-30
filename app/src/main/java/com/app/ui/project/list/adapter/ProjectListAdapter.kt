@@ -1,4 +1,4 @@
-package com.app.ui.project.adapter
+package com.app.ui.project.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -35,7 +35,7 @@ class ProjectListAdapter : PagedListAdapter<Project, ProjectListAdapter.MyViewHo
     inner class MyViewHolder(private val binding : AdapterProjectListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(project: Project, clickListener: ProjectItem?) {
-            binding.dataManager = project
+            binding.project = project
             itemView.setOnClickListener { clickListener?.onProjectItemClickListener(project) }
         }
     }

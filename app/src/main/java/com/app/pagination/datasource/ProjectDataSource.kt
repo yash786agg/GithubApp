@@ -7,8 +7,10 @@ import androidx.paging.PageKeyedDataSource
 import com.app.api.NetworkState
 import com.app.model.project.Project
 import com.app.repository.ProjectRepository
+import com.app.utils.Constants.Companion.noMoreData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class ProjectDataSource(private val projectRepository : ProjectRepository,
                         private val scope: CoroutineScope) : PageKeyedDataSource<Int, Project>()
@@ -16,40 +18,45 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
     private val TAG : String = "ProjectListActivity"
 
     // FOR DATA ---
-    private val networkState = MutableLiveData<NetworkState>()
+    private val networkState = MutableLiveData<NetworkState<Int>>()
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Project>) {
 
         Log.e(TAG, "loadInitial")
 
-        networkState.postValue(NetworkState.LOADING)
+        networkState.postValue(NetworkState.Loading())
 
         scope.launch {
             try
             {
                 val response = projectRepository.getGithubProjects(1)
 
-                when {
-                    response.isSuccessful -> {
+                Log.e(TAG, "loadInitial code: ${response.code()}")
+                Log.e(TAG, "loadInitial message: ${response.message()}")
+                Log.e(TAG, "loadInitial isSuccessful: ${response.isSuccessful}")
+                Log.e(TAG, "loadInitial response: ${response.body().toString()}")
 
-                        if(response.body() != null)
-                        {
-                            val items = response.body()?.projects
+                if(response.isSuccessful) {
 
-                            if(items != null)
-                                callback.onResult(items, null, 2)
+                    if(response.body() != null)
+                    {
+                        val items = response.body()?.projects
 
-                            Log.e(TAG, "loadInitial Response totalCount: ${response.body()?.totalCount}")
-                            Log.e(TAG, "loadInitial Response totalCount: ${items!![1].name}")
-                        }
+                        if(items != null)
+                            callback.onResult(items, null, 2)
 
-                        networkState.postValue(NetworkState.SUCCESS)
+                        Log.e(TAG, "loadInitial Response totalCount: ${response.body()?.totalCount}")
+                        Log.e(TAG, "loadInitial Response size: ${items!!.size}")
                     }
+
+                    networkState.postValue(NetworkState.Success())
                 }
+                else
+                    networkState.postValue(NetworkState.Error(response.code()))
             }
-            catch (exception : Exception) {
+            catch (exception : HttpException) {
                 Log.e(TAG, "loadInitial Exception: $exception")
-                networkState.postValue(NetworkState.ERROR)
+                networkState.postValue(NetworkState.Error(exception.code()))
             }
         }
     }
@@ -58,36 +65,45 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
 
         Log.e(TAG, "loadAfter")
 
-        networkState.postValue(NetworkState.LOADING)
+        networkState.postValue(NetworkState.Loading())
 
         scope.launch {
             try
             {
+                Log.e(TAG, "loadAfter key: ${params.key}")
+
                 val response = projectRepository.getGithubProjects(params.key)
 
-                when {
-                    response.isSuccessful -> {
+                Log.e(TAG, "loadAfter code: ${response.code()}")
+                Log.e(TAG, "loadAfter message: ${response.message()}")
+                Log.e(TAG, "loadAfter isSuccessful: ${response.isSuccessful}")
+                Log.e(TAG, "loadAfter response: ${response.body().toString()}")
 
-                        val nextKey = (if(params.key == response.body()?.totalCount) null else params.key + 1)
+                if(response.isSuccessful) {
+                    val nextKey = (if(params.key == response.body()?.totalCount) null else params.key + 1)
 
-                        if(response.body() != null)
-                        {
-                            val items = response.body()?.projects
+                    if(response.body() != null)
+                    {
+                        val items = response.body()?.projects
 
-                            if(items != null)
-                                callback.onResult(items, nextKey)
+                        if(items?.size!! >= 0) {
 
-                            Log.e(TAG, "loadAfter Response totalCount: ${response.body()?.totalCount}")
-                            Log.e(TAG, "loadAfter Response totalCount: ${items!![1].name}")
+                            networkState.postValue(NetworkState.Success())
+                            callback.onResult(items, nextKey)
                         }
+                        else
+                            networkState.postValue(NetworkState.Error(noMoreData))
 
-                        networkState.postValue(NetworkState.SUCCESS)
+                        Log.e(TAG, "loadAfter Response totalCount: ${response.body()?.totalCount}")
+                        Log.e(TAG, "loadAfter Response size: ${items.size}")
                     }
                 }
+                else
+                    networkState.postValue(NetworkState.Error(response.code()))
             }
-            catch (exception : Exception) {
+            catch (exception : HttpException) {
                 Log.e(TAG, "loadAfter Exception: $exception")
-                networkState.postValue(NetworkState.ERROR)
+                networkState.postValue(NetworkState.Error(exception.code()))
             }
         }
     }
@@ -95,6 +111,5 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Project>) {}
 
     // PUBLIC API ---
-
-    fun getNetworkState(): LiveData<NetworkState> = networkState
+    fun getNetworkState(): LiveData<NetworkState<Int>> = networkState
 }

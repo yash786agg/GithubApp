@@ -2,6 +2,15 @@
     <string name="app_name">NAndroid</string>
     <string name="error_message_network">Network error</string>
     <string name="error_message">Something went wrong</string>
+    <string name="error_no_data">No Data to load</string>
+    <string name="error_no_more_data">No More Data to load</string>
     <string name="square">square</string>
     <string name="slash"> / </string>
+    <string name="day">day ago</string>
+    <string name="days">days ago</string>
+    <string name="hour">hour ago</string>
+    <string name="hours">hours ago</string>
+    <string name="min">min ago</string>
+    <string name="updated">Updated</string>
+    <string name="visit_repo">Visit Github Repo</string>
 </resources>
