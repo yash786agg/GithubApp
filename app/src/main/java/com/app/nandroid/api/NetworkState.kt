@@ -1,4 +1,4 @@
-package com.app.api
+package com.app.nandroid.api
 
 sealed class NetworkState<T>(val errorCode: Int? = null) {
     class Success<T> : NetworkState<T>()

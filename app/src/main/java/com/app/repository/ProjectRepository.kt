@@ -1,6 +1,6 @@
 package com.app.repository
 
-import com.app.api.ProjectApi
+import com.app.nandroid.api.ProjectApi
 import com.app.utils.Constants.Companion.perPage
 import com.app.utils.Constants.Companion.projectFilter
 import javax.inject.Inject

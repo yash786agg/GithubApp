@@ -112,4 +112,8 @@ dependencies {
     // Junit dependency Injection
     def junit_version = "4.12"
     testImplementation "junit:junit:$junit_version"
+
+    // MOCKITO dependency Injection
+    def mockito_version = "2.19.0"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
 }

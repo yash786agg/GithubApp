@@ -11,6 +11,6 @@ data class Project(@SerializedName("id") val projectId : Long?,
                    @SerializedName("description") val description : String?,
                    @SerializedName("updated_at") val updatedAt : String?,
                    @SerializedName("language") val language : String,
-                   @SerializedName("stargazers_count") val stars : String?,
+                   @SerializedName("stargazers_count") val stars : Int?,
                    @SerializedName("html_url") val url : String?,
                    @SerializedName("owner") val owner : Owner?) : Parcelable

@@ -22,6 +22,12 @@ class UiHelper @Inject constructor(private val application: Application)
 
     fun showSnackBar(view: View, content: String) = Snackbar.make(view, content, Snackbar.LENGTH_LONG).show()
 
+    /**
+     * Return the update Repos Time after converting into a Readable Format
+     * @param [updatedAt] takes as a Input variable
+     * @return the time in String format
+     */
+
     fun getProjectUpdatedTime(updatedAt : String) : String {
 
         var formattedTime = ""
@@ -45,6 +51,10 @@ class UiHelper @Inject constructor(private val application: Application)
         return formattedTime
     }
 
+    /**
+     * @return the [CurrentDataTime]
+     */
+
     private fun getCurrentDataTime() : String
     {
         val date = Date()
@@ -52,6 +62,12 @@ class UiHelper @Inject constructor(private val application: Application)
         val dateFormat = SimpleDateFormat(strDateFormat, Locale.US)
         return dateFormat.format(date)
     }
+
+    /**
+     * This function is calculate the Time Difference.
+     * @param [serverTime] takes as a Input variable
+     * @return the time in String format
+     */
 
     private fun getTimeDiff(serverTime: String) : String {
 

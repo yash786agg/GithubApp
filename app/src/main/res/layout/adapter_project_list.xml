@@ -95,8 +95,8 @@
                             android:drawableStart="@drawable/star_vector_icon"
                             android:textColor="@color/colorDarkGray"
                             android:textSize="@dimen/text_size_12sp"
-                            android:visibility="@{TextUtils.isEmpty(project.stars) ? View.GONE : View.VISIBLE}"
-                            android:text="@{project.stars}"/>
+                            android:visibility="@{safeUnbox(project.stars) != 0 ? View.VISIBLE : View.GONE}"
+                            android:text="@{Integer.toString(safeUnbox(project.stars))}"/>
 
                     <TextView
                             android:layout_width="@dimen/dimen_0dp"

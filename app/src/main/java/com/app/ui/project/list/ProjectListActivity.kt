@@ -6,7 +6,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.api.NetworkState
+import com.app.nandroid.api.NetworkState
 import com.app.extensions.ProjectItem
 import com.app.model.project.Project
 import com.app.nandroid.R
@@ -40,7 +40,10 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
         projectListViewModel = ViewModelProviders.of(this,providerFactory).get(ProjectListViewModel::class.java)
 
         initRecyclerView()
-        subscribeObservers()
+        if(uiHelper.getConnectivityStatus())
+            subscribeObservers()
+        else
+            uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_message_network))
     }
 
     private fun subscribeObservers() {

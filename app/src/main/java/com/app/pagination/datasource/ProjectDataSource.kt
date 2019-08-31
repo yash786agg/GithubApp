@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.app.api.NetworkState
+import com.app.nandroid.api.NetworkState
 import com.app.model.project.Project
 import com.app.repository.ProjectRepository
 import com.app.utils.Constants.Companion.noMoreData
