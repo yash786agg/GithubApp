@@ -26,10 +26,9 @@ class ProjectListViewModel @Inject constructor(projectRepository : ProjectReposi
 
     // OBSERVABLES ---
     val projects = LivePagedListBuilder(projectsDataSource, pagedListConfig()).build()
-    val networkState: LiveData<NetworkState<Int>>? = switchMap(projectsDataSource.dataSource) { it.getNetworkState() }
+    val networkState : LiveData<NetworkState<Int>>? = switchMap(projectsDataSource.dataSource) { it.getNetworkState() }
 
     // UTILS ---
-
     private fun pagedListConfig() = PagedList.Config.Builder()
         .setPageSize(20)
         .build()

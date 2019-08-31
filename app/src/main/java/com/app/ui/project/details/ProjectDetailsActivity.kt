@@ -16,8 +16,7 @@ class ProjectDetailsActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding : ActivityProjectDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_project_details)
 
-        if(intent != null && intent.hasExtra(projectTag))
-        {
+        if(intent != null && intent.hasExtra(projectTag)) {
             binding.project = intent.getParcelableExtra(projectTag)
             binding.callback = this
         }
@@ -25,8 +24,7 @@ class ProjectDetailsActivity : DaggerAppCompatActivity() {
 
     fun onVisitRepoClick(webPageUrl : String) {
 
-        if(!TextUtils.isEmpty(webPageUrl))
-        {
+        if(!TextUtils.isEmpty(webPageUrl)) {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(webPageUrl)
             startActivity(intent)

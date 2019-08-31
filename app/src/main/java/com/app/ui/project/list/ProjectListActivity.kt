@@ -2,7 +2,6 @@ package com.app.ui.project.list
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,8 +29,6 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
     private lateinit var projectListViewModel : ProjectListViewModel
     private val projectListAdapter = ProjectListAdapter()
 
-    private val TAG : String = "ProjectListActivity"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_list)
@@ -43,7 +40,6 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
         projectListViewModel = ViewModelProviders.of(this,providerFactory).get(ProjectListViewModel::class.java)
 
         initRecyclerView()
-
         subscribeObservers()
     }
 
@@ -100,7 +96,6 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
     }
 
     override fun onProjectItemClickListener(project: Project?) {
-        Log.e(TAG, "ProjectListActivity onProjectItemClickListener project ${project?.name}")
 
         if(project != null) {
             val intent = Intent(this, ProjectDetailsActivity::class.java)
