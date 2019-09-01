@@ -3,7 +3,7 @@ package com.app.pagination.datasource
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.app.nandroid.api.NetworkState
+import com.app.api.NetworkState
 import com.app.model.project.Project
 import com.app.repository.ProjectRepository
 import kotlinx.coroutines.CoroutineScope

@@ -1,4 +1,4 @@
-package com.app.nandroid.api
+package com.app.api
 
 import com.app.model.project.ProjectApiResponse
 import kotlinx.coroutines.Deferred

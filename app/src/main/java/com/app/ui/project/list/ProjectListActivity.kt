@@ -6,7 +6,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.nandroid.api.NetworkState
+import com.app.api.NetworkState
 import com.app.extensions.ProjectItem
 import com.app.model.project.Project
 import com.app.nandroid.R

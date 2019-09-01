@@ -11,7 +11,7 @@ import javax.inject.Inject
 import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.app.nandroid.api.NetworkState
+import com.app.api.NetworkState
 import com.app.utils.Constants.Companion.perPage
 
 class ProjectListViewModel @Inject constructor(projectRepository : ProjectRepository) : ViewModel() {
