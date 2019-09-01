@@ -39,6 +39,11 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
         projectListViewModel = ViewModelProviders.of(this,providerFactory).get(ProjectListViewModel::class.java)
 
         initRecyclerView()
+
+        /*
+         * Check Internet Connection
+         * */
+
         if(uiHelper.getConnectivityStatus())
             subscribeObservers()
         else
@@ -53,14 +58,14 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
          * */
 
         projectListViewModel.projects.observe(this, Observer {
-            if(it != null)
-                projectListAdapter.submitList(it)
+
+            it?.let { projectListAdapter.submitList(it) }
         })
 
         /*
          * Progress Updater
          * */
-        projectListViewModel.networkState!!.observe(this, Observer {
+        projectListViewModel.networkState?.observe(this, Observer {
 
             it?.let {
                 when(it) {
@@ -97,7 +102,7 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
 
     override fun onProjectItemClickListener(project: Project?) {
 
-        if(project != null) {
+        project?.let {
             val intent = Intent(this, ProjectDetailsActivity::class.java)
             intent.putExtra(projectTag,project)
             startActivity(intent)

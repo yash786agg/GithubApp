@@ -27,11 +27,10 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
 
                 if(response.isSuccessful) {
 
-                    if(response.body() != null) {
-                        val items = response.body()?.projects
+                    response.body()?.let {
 
-                        if(items != null)
-                            callback.onResult(items, null, null)
+                        val items = response.body()?.projects
+                        items?.let { callback.onResult(items, null, null) }
                     }
 
                     networkState.postValue(NetworkState.Success())
