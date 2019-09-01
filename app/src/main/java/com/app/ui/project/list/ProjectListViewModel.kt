@@ -12,6 +12,7 @@ import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.app.nandroid.api.NetworkState
+import com.app.utils.Constants.Companion.perPage
 
 class ProjectListViewModel @Inject constructor(projectRepository : ProjectRepository) : ViewModel() {
 
@@ -30,7 +31,7 @@ class ProjectListViewModel @Inject constructor(projectRepository : ProjectReposi
 
     // UTILS ---
     private fun pagedListConfig() = PagedList.Config.Builder()
-        .setPageSize(20)
+        .setPageSize(perPage)
         .build()
 
     /**

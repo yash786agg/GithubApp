@@ -52,7 +52,7 @@ class UiHelper @Inject constructor(private val application: Application)
     }
 
     /**
-     * @return the [CurrentDataTime]
+     * @return the Current Date Time
      */
 
     private fun getCurrentDataTime() : String

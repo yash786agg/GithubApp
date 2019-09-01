@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 class ProjectRepository @Inject constructor(private val projectApi : ProjectApi) {
 
-    suspend fun getGithubProjects(page : Int) = projectApi.getProjectsAsync(projectFilter,perPage,page).await()
+    suspend fun getGithubProjects() = projectApi.getProjectsAsync(projectFilter,perPage).await()
 }

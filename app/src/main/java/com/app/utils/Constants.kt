@@ -12,8 +12,6 @@ class Constants
 
         const val noData : Int = 403
 
-        const val noMoreData : Int = 100
-
         const val projectTag = "project"
     }
 }

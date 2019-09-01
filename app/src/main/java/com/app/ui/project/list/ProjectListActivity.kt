@@ -13,7 +13,6 @@ import com.app.nandroid.R
 import com.app.ui.project.details.ProjectDetailsActivity
 import com.app.ui.project.list.adapter.ProjectListAdapter
 import com.app.utils.Constants.Companion.noData
-import com.app.utils.Constants.Companion.noMoreData
 import com.app.utils.Constants.Companion.projectTag
 import com.app.utils.UiHelper
 import com.app.viewmodels.ViewModelProviderFactory
@@ -71,8 +70,6 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
                         showProgressBar(false)
                         if(it.errorCode == noData)
                             uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_no_data))
-                        else if(it.errorCode == noMoreData)
-                             uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_no_more_data))
                         else
                             uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_message))
                     }
