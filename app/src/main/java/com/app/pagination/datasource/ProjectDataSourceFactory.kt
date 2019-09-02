@@ -11,7 +11,7 @@ class ProjectDataSourceFactory(private val projectRepository : ProjectRepository
 {
     val dataSource = MutableLiveData<ProjectDataSource>()
 
-    override fun create(): DataSource<Int, Project> {
+    override fun create() : DataSource<Int, Project> {
 
         val dataSource = ProjectDataSource(projectRepository , scope)
         this.dataSource.postValue(dataSource)

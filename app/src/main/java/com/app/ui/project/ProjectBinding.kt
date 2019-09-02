@@ -25,8 +25,7 @@ class ProjectBinding(private val fresco: PipelineDraweeControllerBuilder,
                 val updatedTime = textView.context.resources.getString(R.string.updated)+" "+ formattedTime
                 textView.text = updatedTime
             }
-            else
-                textView.visibility = View.GONE
+            else textView.visibility = View.GONE
         }
     }
 

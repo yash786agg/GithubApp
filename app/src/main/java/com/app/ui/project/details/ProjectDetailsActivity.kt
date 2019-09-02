@@ -5,19 +5,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import com.app.nandroid.R
-import com.app.utils.Constants.Companion.projectTag
+import com.app.utils.Constants.Companion.EXTRA_PROJECT
 import dagger.android.support.DaggerAppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.app.nandroid.databinding.ActivityProjectDetailsBinding
 
 class ProjectDetailsActivity : DaggerAppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         val binding : ActivityProjectDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_project_details)
 
-        if(intent != null && intent.hasExtra(projectTag)) {
-            binding.project = intent.getParcelableExtra(projectTag)
+        if(intent != null && intent.hasExtra(EXTRA_PROJECT)) {
+            binding.project = intent.getParcelableExtra(EXTRA_PROJECT)
             binding.callback = this
         }
     }

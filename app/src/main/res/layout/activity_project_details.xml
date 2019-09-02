@@ -18,13 +18,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/MatchWidthHeight">
 
         <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/text_name"
+                style="@style/MatchWidth"
                 android:padding="@dimen/dimen_10dp"
                 android:layout_marginStart="@dimen/dimen_10dp"
                 android:layout_marginEnd="@dimen/dimen_10dp"
@@ -36,10 +34,10 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/avatar"/>
+                app:layout_constraintBottom_toTopOf="@+id/image_avatar"/>
 
         <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/avatar"
+                android:id="@+id/image_avatar"
                 android:layout_width="@dimen/dimen_210dp"
                 android:layout_height="@dimen/dimen_140dp"
                 fresco:placeholderImage="@drawable/place_holder"
@@ -48,12 +46,11 @@
                 app:avatarUrl="@{project.owner.avatar}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_name"/>
 
         <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/text_description"
+                style="@style/MatchWidth"
                 android:visibility="@{TextUtils.isEmpty(project.description) ? View.GONE : View.VISIBLE}"
                 android:text="@{project.description}"
                 android:textColor="@color/colorGray"
@@ -63,7 +60,7 @@
                 android:layout_marginEnd="@dimen/dimen_10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/avatar"/>
+                app:layout_constraintTop_toBottomOf="@+id/image_avatar"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
@@ -73,7 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:onClick="@{() -> callback.onVisitRepoClick(project.url)}"
-                app:layout_constraintTop_toBottomOf="@+id/description"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_description"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

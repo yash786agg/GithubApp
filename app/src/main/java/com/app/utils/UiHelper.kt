@@ -69,7 +69,7 @@ class UiHelper @Inject constructor(private val application: Application)
      * @return the time in String format
      */
 
-    private fun getTimeDiff(serverTime: String) : String {
+    private fun getTimeDiff(serverTime : String) : String {
 
         val format = "dd MMM yyyy, HH:mm"
 

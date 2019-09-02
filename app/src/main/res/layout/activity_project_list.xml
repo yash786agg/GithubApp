@@ -9,22 +9,22 @@
         tools:context="com.app.ui.project.list.ProjectListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/project_recylv"
+            android:id="@+id/recylv_project"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="@dimen/dimen_8dp"
             tools:layout_editor_absoluteY="@dimen/dimen_8dp" />
 
     <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_centerInParent="true"
-            android:id="@+id/progress_bar"
             android:visibility="gone"
             android:elevation="@dimen/dimen_20dp"/>
 

@@ -12,8 +12,8 @@ import com.app.model.project.Project
 import com.app.nandroid.R
 import com.app.ui.project.details.ProjectDetailsActivity
 import com.app.ui.project.list.adapter.ProjectListAdapter
-import com.app.utils.Constants.Companion.noData
-import com.app.utils.Constants.Companion.projectTag
+import com.app.utils.Constants.Companion.NO_DATA
+import com.app.utils.Constants.Companion.EXTRA_PROJECT
 import com.app.utils.UiHelper
 import com.app.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
@@ -28,7 +28,7 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
     private lateinit var projectListViewModel : ProjectListViewModel
     private val projectListAdapter = ProjectListAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_list)
 
@@ -44,10 +44,8 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
          * Check Internet Connection
          * */
 
-        if(uiHelper.getConnectivityStatus())
-            subscribeObservers()
-        else
-            uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_message_network))
+        if(uiHelper.getConnectivityStatus()) subscribeObservers()
+        else uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_message_network))
     }
 
     private fun subscribeObservers() {
@@ -73,10 +71,9 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
                      is NetworkState.Success -> showProgressBar(false)
                      is NetworkState.Error -> {
                         showProgressBar(false)
-                        if(it.errorCode == noData)
+                        if(it.errorCode == NO_DATA)
                             uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_no_data))
-                        else
-                            uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_message))
+                        else uiHelper.showSnackBar(main_rootView, resources.getString(R.string.error_message))
                     }
                 }
             }
@@ -87,24 +84,22 @@ class ProjectListActivity : DaggerAppCompatActivity() , ProjectItem {
         /*
          * Setup the adapter class for the RecyclerView
          * */
-        project_recylv.layoutManager = LinearLayoutManager(this)
-        project_recylv.adapter = projectListAdapter
+        recylv_project.layoutManager = LinearLayoutManager(this)
+        recylv_project.adapter = projectListAdapter
         projectListAdapter.setonProjectItemClickListener(this)
     }
 
     // UPDATE UI ----
     private fun showProgressBar(display : Boolean) {
-        if(!display)
-            progress_bar.visibility = View.GONE
-        else
-            progress_bar.visibility = View.VISIBLE
+        if(!display) progress_bar.visibility = View.GONE
+        else progress_bar.visibility = View.VISIBLE
     }
 
-    override fun onProjectItemClickListener(project: Project?) {
+    override fun onProjectItemClickListener(project : Project?) {
 
         project?.let {
             val intent = Intent(this, ProjectDetailsActivity::class.java)
-            intent.putExtra(projectTag,project)
+            intent.putExtra(EXTRA_PROJECT,project)
             startActivity(intent)
         }
     }

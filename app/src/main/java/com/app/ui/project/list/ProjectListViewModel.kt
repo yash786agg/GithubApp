@@ -12,7 +12,7 @@ import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.app.api.NetworkState
-import com.app.utils.Constants.Companion.perPage
+import com.app.utils.Constants.Companion.PER_PAGE
 
 class ProjectListViewModel @Inject constructor(projectRepository : ProjectRepository) : ViewModel() {
 
@@ -30,9 +30,7 @@ class ProjectListViewModel @Inject constructor(projectRepository : ProjectReposi
     val networkState : LiveData<NetworkState<Int>>? = switchMap(projectsDataSource.dataSource) { it.getNetworkState() }
 
     // UTILS ---
-    private fun pagedListConfig() = PagedList.Config.Builder()
-        .setPageSize(perPage)
-        .build()
+    private fun pagedListConfig() = PagedList.Config.Builder().setPageSize(PER_PAGE).build()
 
     /**
      * Cancel co-routines when the ViewModel is cleared

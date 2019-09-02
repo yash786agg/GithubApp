@@ -21,8 +21,7 @@ import java.math.BigDecimal
 @RunWith(JUnit4::class)
 class ProjectApiTest {
 
-    @Mock
-    private var projectApi : ProjectApi? = null
+    @Mock private var projectApi : ProjectApi? = null
 
     private lateinit var projectApiSuccess : ProjectApiResponse
 

@@ -12,39 +12,30 @@
     </data>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/MatchWidthVertical">
 
         <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/MatchWidth"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="@dimen/dimen_10dp"
                 app:cardElevation="@dimen/dimen_8dp"
                 app:cardCornerRadius="@dimen/dimen_8dp">
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_10dp"
-                    android:orientation="vertical">
+                    style="@style/MatchWidthVertical"
+                    android:layout_margin="@dimen/dimen_10dp">
 
                 <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        style="@style/MatchWidthHorizontal">
 
                     <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/WrapWidthHeight"
                             android:layout_marginTop="@dimen/dimen_10dp"
-                            app:srcCompat="@drawable/repo_vector_icon"
+                            app:srcCompat="@drawable/ic_vector_repo"
                             android:contentDescription="@string/app_name"/>
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/WrapWidthHeight"
                             android:textSize="@dimen/text_size_17sp"
                             android:text="@string/square"
                             android:textColor="@color/colorBlue"
@@ -52,8 +43,7 @@
                             android:gravity="center"/>
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/WrapWidthHeight"
                             android:textSize="@dimen/text_size_17sp"
                             android:text="@string/slash"
                             android:textColor="@android:color/black"
@@ -61,8 +51,7 @@
                             android:gravity="center"/>
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/WrapWidthHeight"
                             android:textSize="@dimen/text_size_17sp"
                             android:visibility="@{TextUtils.isEmpty(project.name) ? View.GONE : View.VISIBLE}"
                             android:text="@{project.name}"
@@ -73,8 +62,7 @@
                 </LinearLayout>
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/WrapWidthHeight"
                         android:layout_marginTop="@dimen/dimen_8dp"
                         android:layout_marginBottom="@dimen/dimen_10dp"
                         android:textSize="@dimen/text_size_14sp"
@@ -83,24 +71,21 @@
                         android:textColor="@color/colorGray"/>
 
                 <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/MatchWidth"
                         android:weightSum="2"
                         android:orientation="horizontal">
 
                     <TextView
-                            android:layout_width="@dimen/dimen_0dp"
-                            android:layout_height="wrap_content"
+                            style="@style/ZeroWidthWrapHeight"
                             android:layout_weight="0.5"
-                            android:drawableStart="@drawable/star_vector_icon"
+                            android:drawableStart="@drawable/ic_vector_star"
                             android:textColor="@color/colorDarkGray"
                             android:textSize="@dimen/text_size_12sp"
                             android:visibility="@{safeUnbox(project.stars) != 0 ? View.VISIBLE : View.GONE}"
                             android:text="@{Integer.toString(safeUnbox(project.stars))}"/>
 
                     <TextView
-                            android:layout_width="@dimen/dimen_0dp"
-                            android:layout_height="wrap_content"
+                            style="@style/ZeroWidthWrapHeight"
                             android:layout_weight="0.5"
                             android:drawableStart="@drawable/circle_shape"
                             android:layout_marginStart="@dimen/dimen_20dp"
@@ -111,8 +96,7 @@
                             android:text="@{project.language}"/>
 
                     <TextView
-                            android:layout_width="@dimen/dimen_0dp"
-                            android:layout_height="wrap_content"
+                            style="@style/ZeroWidthWrapHeight"
                             android:layout_weight="1"
                             android:layout_marginStart="@dimen/dimen_20dp"
                             android:textColor="@color/colorGray"
