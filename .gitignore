@@ -65,3 +65,4 @@ lint/outputs/
 lint/tmp/
 
 .DS_Store
+keys.properties
