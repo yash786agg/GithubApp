@@ -1,21 +1,19 @@
 package com.app.utils
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
-import com.app.nandroid.R
+import com.app.githubapp.R
 import com.google.android.material.snackbar.Snackbar
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
-class UiHelper @Inject constructor(private val application: Application)
+class UiHelper(private val context : Context)
 {
     fun getConnectivityStatus() : Boolean
     {
-        val connectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
@@ -83,23 +81,23 @@ class UiHelper @Inject constructor(private val application: Application)
         val diffDays = (diff / (24 * 60 * 60 * 1000)).toInt()
 
         if(diffDays != 0 && diffDays >= 2)
-            return diffDays.toString() + " " + application.resources.getString(R.string.days)
+            return diffDays.toString() + " " + context.resources.getString(R.string.days)
         else if(diffDays != 0 && diffDays == 1)
-            return diffDays.toString() + " " + application.resources.getString(R.string.day)
+            return diffDays.toString() + " " + context.resources.getString(R.string.day)
 
         val diffHours = (diff / (60 * 60 * 1000)).toInt()
 
         if(diffHours != 0 && diffHours >= 2)
-            return diffHours.toString() + " " + application.resources.getString(R.string.hours)
+            return diffHours.toString() + " " + context.resources.getString(R.string.hours)
         else if(diffHours != 0 && diffHours == 1)
-            return diffHours.toString() + " " + application.resources.getString(R.string.hour)
+            return diffHours.toString() + " " + context.resources.getString(R.string.hour)
 
         val diffMin = (diff / (60 * 1000)).toInt()
 
         return if(diffMin >= 60) {
             val min : Int = diffMin/60
-            min.toString() + " " + application.resources.getString(R.string.hours)
+            min.toString() + " " + context.resources.getString(R.string.hours)
         } else
-            diffMin.toString() + " " + application.resources.getString(R.string.min)
+            diffMin.toString() + " " + context.resources.getString(R.string.min)
     }
 }

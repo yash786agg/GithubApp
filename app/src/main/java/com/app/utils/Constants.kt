@@ -12,6 +12,8 @@ class Constants
 
         const val NO_DATA : Int = 403
 
+        const val NO_MORE_DATA : Int = 100
+
         const val EXTRA_PROJECT = "project"
     }
 }

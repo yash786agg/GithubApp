@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.extensions.ProjectItem
-import com.app.model.project.ProjectDiffCallback
 import com.app.model.project.Project
-import com.app.nandroid.R
-import com.app.nandroid.databinding.AdapterProjectListBinding
+import com.app.githubapp.R
+import com.app.githubapp.databinding.AdapterProjectListBinding
 
 class ProjectListAdapter : PagedListAdapter<Project, ProjectListAdapter.MyViewHolder>(ProjectDiffCallback())
 {
@@ -41,4 +41,9 @@ class ProjectListAdapter : PagedListAdapter<Project, ProjectListAdapter.MyViewHo
     }
 }
 
+class ProjectDiffCallback : DiffUtil.ItemCallback<Project>() {
+    override fun areItemsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem.projectId == newItem.projectId
+
+    override fun areContentsTheSame(oldItem: Project, newItem: Project): Boolean = oldItem == newItem
+}
 

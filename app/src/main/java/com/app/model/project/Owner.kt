@@ -1,8 +1,8 @@
 package com.app.model.project
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Owner(@SerializedName("avatar_url") val avatar : String?) : Parcelable
+data class Owner(@field:Json(name = "avatar_url") val avatar : String?) : Parcelable

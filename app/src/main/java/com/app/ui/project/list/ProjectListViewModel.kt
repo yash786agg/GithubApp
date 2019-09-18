@@ -7,14 +7,13 @@ import com.app.repository.ProjectRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import javax.inject.Inject
 import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.app.api.NetworkState
 import com.app.utils.Constants.Companion.PER_PAGE
 
-class ProjectListViewModel @Inject constructor(projectRepository : ProjectRepository) : ViewModel() {
+class ProjectListViewModel(projectRepository : ProjectRepository) : ViewModel() {
 
     /**
      * This is a scope for co-routines launched by [ProjectListViewModel]

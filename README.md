@@ -1,4 +1,4 @@
-# NAndroid
+# GithubApp
 
 This application includes the scrollable list of Github Repositories, in which each cell or item represents the Repo name, 
 stars,description, language on which repo build and last updated at. And on a click of a particular item it will open the 

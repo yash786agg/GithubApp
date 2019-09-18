@@ -18,22 +18,29 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
 
     override fun loadInitial(params : LoadInitialParams<Int>, callback : LoadInitialCallback<Int, Project>) {
 
+        executeQuery(1, params.requestedLoadSize) {
+            callback.onResult(it, null, 2)
+        }
+    }
+
+    override fun loadAfter(params : LoadParams<Int>, callback : LoadCallback<Int, Project>) {
+        executeQuery(params.key, params.requestedLoadSize) {
+            callback.onResult(it, params.key + 1)
+        }
+    }
+
+    // UTILS ---
+    private fun executeQuery(page: Int, perPage: Int, callback:(List<Project>) -> Unit) {
         networkState.postValue(NetworkState.Loading())
-
         scope.launch {
-            try
-            {
-                val response = projectRepository.getGithubProjects()
-
+            try {
+                val response = projectRepository.getGithubProjects(page, perPage)
                 if(response.isSuccessful) {
-
-                    response.body()?.let {
-
-                        val items = response.body()?.projects
-                        items?.let { callback.onResult(items, null, null) }
+                    val items = response.body()?.projects
+                    if(items?.size!! >= 0) {
+                        networkState.postValue(NetworkState.Success())
+                        callback(items)
                     }
-
-                    networkState.postValue(NetworkState.Success())
                 }
                 else networkState.postValue(NetworkState.Error(response.code()))
             }
@@ -41,9 +48,6 @@ class ProjectDataSource(private val projectRepository : ProjectRepository,
                 networkState.postValue(NetworkState.Error(exception.code()))
             }
         }
-    }
-
-    override fun loadAfter(params : LoadParams<Int>, callback : LoadCallback<Int, Project>) {
     }
 
     override fun loadBefore(params : LoadParams<Int>, callback : LoadCallback<Int, Project>) {

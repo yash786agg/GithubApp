@@ -14,7 +14,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.app.nandroid"
+        applicationId "com.app.githubapp"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -57,7 +57,19 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -78,24 +90,18 @@ dependencies {
     def material_version = "1.0.0"
     implementation "com.google.android.material:material:$material_version"
 
-    //Dagger2 core dependencies Injection
-    def dagger_version = "2.22.1"
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
-    // Dagger Android dependencies Injection
-    def dagger_android_version = "2.22.1"
-    implementation "com.google.dagger:dagger-android:$dagger_android_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_android_version" // if you use the support libraries
-    kapt "com.google.dagger:dagger-android-processor:$dagger_android_version"
+    //Koin core dependencies Injection
+    def koin_version = '2.0.1'
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     //Android lifecycle dependency Injection
     def lifecycle_version = '2.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
-    //Fresco dependency
-    def fresco_version = '2.0.0'
-    implementation "com.facebook.fresco:fresco:$fresco_version"
+    //Coil dependency
+    def coil_version = '0.7.0'
+    implementation "io.coil-kt:coil:$coil_version"
 
     //Co-routines dependency Injection
     def coroutines_android_version = '1.1.1'
@@ -106,11 +112,11 @@ dependencies {
 
     //Retrofit dependency Injection
     def retrofitVersion = "2.5.0"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
     // Paging dependency Injection
-    def paggingVersion = "1.0.1"
-    implementation "android.arch.paging:runtime:$paggingVersion"
+    def pagingVersion = "1.0.1"
+    implementation "android.arch.paging:runtime:$pagingVersion"
 
     // Junit dependency Injection
     def junit_version = "4.12"

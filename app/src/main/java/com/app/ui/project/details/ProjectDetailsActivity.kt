@@ -4,13 +4,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import com.app.nandroid.R
-import com.app.utils.Constants.Companion.EXTRA_PROJECT
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.app.nandroid.databinding.ActivityProjectDetailsBinding
+import com.app.githubapp.R
+import com.app.utils.Constants.Companion.EXTRA_PROJECT
+import com.app.githubapp.databinding.ActivityProjectDetailsBinding
 
-class ProjectDetailsActivity : DaggerAppCompatActivity() {
+class ProjectDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)

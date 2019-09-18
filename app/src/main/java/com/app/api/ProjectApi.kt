@@ -10,5 +10,6 @@ interface ProjectApi {
 
     @GET("search/repositories")
     fun getProjectsAsync(@Query("q") filter: String,
-                         @Query("per_page") perPage: Int) : Deferred<Response<ProjectApiResponse>>
+                         @Query("per_page") perPage: Int,
+                         @Query("page") page : Int) : Deferred<Response<ProjectApiResponse>>
 }
