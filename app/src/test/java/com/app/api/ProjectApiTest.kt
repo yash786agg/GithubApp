@@ -61,7 +61,7 @@ class ProjectApiTest {
         val response = Response.success(projectApiSuccess)
 
         runBlocking {
-            Mockito.`when`(projectApi?.getProjectsAsync(anyString(), anyInt()))
+            Mockito.`when`(projectApi?.getProjectsAsync(anyString(), anyInt(), anyInt()))
                 .thenReturn(async { response })
         }
 
@@ -82,7 +82,7 @@ class ProjectApiTest {
         val response = Response.success(projectApiError)
 
         runBlocking {
-            Mockito.`when`(projectApi?.getProjectsAsync(anyString(), anyInt()))
+            Mockito.`when`(projectApi?.getProjectsAsync(anyString(), anyInt(), anyInt()))
                 .thenReturn(async { response })
         }
 
