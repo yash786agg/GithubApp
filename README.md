@@ -1,9 +1,9 @@
 # GithubApp
 
+![Github Action CI](https://github.com/yash786agg/GithubApp/workflows/Github%20Action%20CI/badge.svg?branch=master)
+
 A small sample app majorily build to learn and test the performance of latest Koin dependency Injection along side with latest
 Kotlin Corooutines for network request and Coil(Kotlin-first image loading library).
-
-![Github Action CI](https://github.com/yash786agg/GithubApp/workflows/Github%20Action%20CI/badge.svg?branch=master)
 
 ## Languages, libraries and tools used
 
