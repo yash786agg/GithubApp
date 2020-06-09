@@ -12,7 +12,7 @@ keysProperties.load(new FileInputStream(keysPropertiesFile))
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.app.githubapp"
         minSdkVersion 21
@@ -50,8 +50,9 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        //Data binding
+        dataBinding = true
     }
 
     androidExtensions {
@@ -87,7 +88,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
 
     // AndroidX material design
-    def material_version = "1.0.0"
+    def material_version = "1.1.0"
     implementation "com.google.android.material:material:$material_version"
 
     //Koin core dependencies Injection
@@ -96,7 +97,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     //Android lifecycle dependency Injection
-    def lifecycle_version = '2.1.0'
+    def lifecycle_version = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     //Coil dependency
