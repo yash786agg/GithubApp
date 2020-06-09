@@ -1,35 +1,51 @@
 # GithubApp
 
-This application includes the scrollable list of Github Repositories, in which each cell or item represents the Repo name, 
-stars,description, language on which repo build and last updated at. And on a click of a particular item it will open the 
-detail screen in which repo avatar, name, description, and link to visit the Github Repo on a click of **Visit Github Repo**
+A small sample app majorily build to learn and test the performance of latest Koin dependency Injection along side with latest
+Kotlin Corooutines for network request and Coil(Kotlin-first image loading library).
+
+## Languages, libraries and tools used
+
+* __[Kotlin](https://developer.android.com/kotlin)__
+* __[Kotlin Corooutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)__
+* __[Koin](https://github.com/InsertKoinIO/koin)__
+* __[Coil](https://coil-kt.github.io/coil/getting_started/)__
+* __[Moshi](https://github.com/square/moshi)__
+* __[Android JetPack Paging](https://developer.android.com/topic/libraries/architecture/paging)__
+* __[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)__
+* __[Mockito](http://site.mockito.org/)__
+
+## Future Roadmap Features
+
+* __MVI Architecture__
+* __Koin UnitTest__
+* __Room with Koin and Kotlin Corooutines__
 
 # Demo
 ![NAndroid](screenshots/NAndroid.gif)
 
-# Features:
-* __MVVM Android Architecture__
-* __Dagger2 with Multi Binding Support__
-* __Kotlin-Coroutines for api request__
-* __Android JetPack Paging for providing Pagination support__
-* __Fresco for Image Management__
-* __Unit Testing__
-* __Any Many More__
+### Koin vs Dagger  
 
-Above Feature are used to make code simple, generic, understandable, clean and easily maintainable for the future development.
-Especially **Android JetPack Paging Library** is used because this is a kind of application where the user scrolls a lot of 
-data to find a suitable Github Repo according to his choice. So in future for the development side, we have to make changes
-in **ProjectDataSource** classes only and rest of the code will remain the same. No need to make major changes in ViewModel, 
-Adapter and in View classes.
+Koin  | Dagger
+------------- | -------------
+Written in Kotlin  | Written in Java
+Errors are fired at runtime  | Errors can be found at compile time
+Do not use annotations  | Use annotations
+Dedicated library to work with ViewModel (Android Jetpack) | Not interaction with ViewModel
 
-This application supports the screen rotation without losing the data and also use **Constraintlayout** to design layout which 
-gives better **UI support for both Mobile and Tablet**, and even when the screen rotates.
+### APK Build with Koin dependency Injection
 
-I had enabled the **Proguard** along with minifyEnabled and shrinkResources True in released version along with basic support 
-for **Android App Bundle**. In the result of that, we can reduce the APK size along with we can also provide an extra security
-layer to our code from decompiling or extracting of the code from APK. For more info refer the Image below.
+![Apk Analyser](screenshots/Koin_Apk_Analyser.png)
 
-![Apk Analyser](screenshots/Apk_Analyser.png)
+### APK Build with Dagger2 dependency Injection
+
+![Apk Analyser](screenshots/Dagger2_Apk_Analyser.png)
+
+### Conclusions
+
+Dagger and Koin are great dependency injection frameworks. Dagger has the advantage of being in the market for a longer time 
+than Koin. If you're a Kotlin developer, it will be easier to start with Koin instead of Dagger. Although, Dagger has more 
+information in blogs, articles, and questions on Stack Overflow. Finally, Koin is a great alternative for small and medium-
+sized apps as Dagger is older and more mature framework when it comes to big projects with a distributed team.
 
 # Prerequisites
 * __Android Studio 3.4__
@@ -41,5 +57,11 @@ layer to our code from decompiling or extracting of the code from APK. For more 
 
 * __[Android Studio](https://developer.android.com/studio/index.html)__ - The Official IDE for Android
 * __[Android JetPack Paging library](https://developer.android.com/topic/libraries/architecture/paging)__ - Android JetPack Paging library
-* __[Paging Video for Reference](https://www.youtube.com/watch?v=BE5bsyGGLf4)__ Paging Video for Reference
 * __[Gradle](https://gradle.org)__ - Build tool for Android Studio
+
+Thanks for reading this repo. Be sure to click ★ below to recommend this repo if you found it helpful. It means a lot to me.
+
+For more about programming, follow me on [Medium](https://medium.com/@yash786agg)
+
+Also, Let’s become friends on [Linkedin](http://bit.ly/24t4EVI)
+
